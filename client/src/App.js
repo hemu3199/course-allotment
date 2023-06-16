@@ -6,6 +6,7 @@ import Breadcrumb from "./components/Breadcrumb";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -19,12 +20,12 @@ function App() {
             <Sidebar />
             <div className="grid_threefourths Page">
               <div className="grid_inner">
-                {/* <Routes>
-                  <Route path="" element={""} />
+                <Routes>
+                  <Route path="" element={<Home />} />
                   <Route path="scholarships" element={""} />
                   <Route path="scholarships/create" element={""} />
                   <Route path="scholarships/:id" element={""} />
-                </Routes> */}
+                </Routes>
                 {/* <HomePageTouts /> */}
               </div>
             </div>
