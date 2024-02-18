@@ -3,8 +3,7 @@ package com.msu.csc.controllers;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.msu.csc.domin.Courses;
 import com.msu.csc.domin.Request;
@@ -16,11 +15,13 @@ public class CourseRegistration {
 
     @Autowired
     private CourseService courseService;
-    
 
-    @RequestMapping("/register")
-    public Response student_choices(Request courses) {
 
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/register")
+    public Response student_choices(@RequestBody Request request) {
+        System.out.println(request.toString());
         return new Response();
     }
 

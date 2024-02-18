@@ -1,77 +1,61 @@
 package com.msu.csc.domin;
 
 public class Request {
-    
-    private String SName;
-    private String SNumber;
-    private String SEmail;
+
+    private String name;
+    private String mnumber;
+    private String email;
     private String credits;
-    private int graduating;
-    private String choice1;
-    private String choice2;
-    private String choice3;
-    private String choice4;
-    private String choice5;
-    
-    public String getSName() {
-        return SName;
+    private String graduating;
+
+    public String getName() {
+        return name;
     }
-    public void setSName(String sName) {
-        SName = sName;
+
+    public void setName(String name) {
+        this.name = name;
     }
-    public String getSNumber() {
-        return SNumber;
+
+    public String getMnumber() {
+        return mnumber;
     }
-    public void setSNumber(String sNumber) {
-        SNumber = sNumber;
+
+    public void setMnumber(String mnumber) {
+        this.mnumber = mnumber;
     }
-    public String getSEmail() {
-        return SEmail;
+
+    public String getEmail() {
+        return email;
     }
-    public void setSEmail(String sEmail) {
-        SEmail = sEmail;
+
+    public void setEmail(String email) {
+        this.email = email;
     }
+
     public String getCredits() {
         return credits;
     }
+
     public void setCredits(String credits) {
         this.credits = credits;
     }
-    public int getGraduating() {
+
+    public String getGraduating() {
         return graduating;
     }
-    public void setGraduating(int graduating) {
+
+    public void setGraduating(String graduating) {
         this.graduating = graduating;
     }
-    public String getChoice1() {
-        return choice1;
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "name='" + name + '\'' +
+                ", mnumber='" + mnumber + '\'' +
+                ", email='" + email + '\'' +
+                ", credits='" + credits + '\'' +
+                ", graduating='" + graduating + '\'' +
+                '}';
     }
-    public void setChoice1(String choice1) {
-        this.choice1 = choice1;
-    }
-    public String getChoice2() {
-        return choice2;
-    }
-    public void setChoice2(String choice2) {
-        this.choice2 = choice2;
-    }
-    public String getChoice3() {
-        return choice3;
-    }
-    public void setChoice3(String choice3) {
-        this.choice3 = choice3;
-    }
-    public String getChoice4() {
-        return choice4;
-    }
-    public void setChoice4(String choice4) {
-        this.choice4 = choice4;
-    }
-    public String getChoice5() {
-        return choice5;
-    }
-    public void setChoice5(String choice5) {
-        this.choice5 = choice5;
-    }
-    
 }
