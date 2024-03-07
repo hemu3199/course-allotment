@@ -1,5 +1,9 @@
 pipeline {
     agent any
+     tools {
+        // Define JDK tool installation
+        jdk 'JDK_11'
+    }
     
     stages {
         
