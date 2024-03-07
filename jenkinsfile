@@ -14,7 +14,7 @@ pipeline {
             steps {
                 // Copy your built artifact to the EC2 instance
                 //sh 'scp target/your-application.jar ec2-user@your_ec2_instance_public_ip:/path/to/deployment/directory'
-                
+                echo('deployment')
                 // Restart your application on EC2 (you may need to replace this with appropriate commands)
                 //sh 'ssh ec2-user@your_ec2_instance_public_ip "sudo systemctl restart your-application.service"'
             }
