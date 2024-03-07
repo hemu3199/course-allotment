@@ -29,4 +29,9 @@ public class CourseRegistration {
     public ArrayList<String> get_courses(){
         return courseService.getCourses();
     }
+
+    @RequestMapping("/payments")
+    public ArrayList<String> get_payments(){
+        return courseService.getCourses();
+    }
 }
