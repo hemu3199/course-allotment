@@ -1,8 +1,12 @@
 pipeline {
     agent any
-     tools {
+     //tools {
         // Define JDK tool installation
-        jdk 'JDK_11'
+       // jdk 'JDK_11'
+    //}
+
+    environment {
+        JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64' // Update with the actual path to Java 11
     }
     
     stages {
