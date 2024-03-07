@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    
+    stages {
+        
+        stage('Build') {
+            steps {
+                // Build your Spring Boot application
+                sh "mvn clean install -f '/csc/pom.xml'" // Assuming you're using Maven for your build
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                // Copy your built artifact to the EC2 instance
+                //sh 'scp target/your-application.jar ec2-user@your_ec2_instance_public_ip:/path/to/deployment/directory'
+                
+                // Restart your application on EC2 (you may need to replace this with appropriate commands)
+                //sh 'ssh ec2-user@your_ec2_instance_public_ip "sudo systemctl restart your-application.service"'
+            }
+        }
+    }
+}
