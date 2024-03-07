@@ -9,7 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build your Spring Boot application
-                sh "mvn clean install -f '/csc/pom.xml'" // Assuming you're using Maven for your build
+                sh "mvn clean install -f 'csc/pom.xml'" // Assuming you're using Maven for your build
             }
         }
         
