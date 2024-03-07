@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 //import org.modelmapper.ModelMapper;
 //import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 //import com.msu.csc.domin.Courses;
@@ -18,8 +20,8 @@ public class CourseServiceImpl implements CourseService {
 //
 //    @Autowired
 //    CourseRepository courseRepository;
-//    @Autowired
-//    ModelMapper mapper;
+    @Autowired
+    ModelMapper mapper;
 
     @Override
     public ArrayList<String> getCourses() {
