@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build your Spring Boot application
-                dir('react-spring/csc') {
+                dir('csc') {
                 sh "mvn clean install" // Assuming you're using Maven for your build
                 }
             }
