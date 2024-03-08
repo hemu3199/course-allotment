@@ -5,9 +5,12 @@ pipeline {
        // jdk 'JDK 11'
     //}
 
-    //environment {
-      //  JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64' // Update with the actual path to Java 11
-    //}
+    environment {
+            DOCKER_REGISTRY_CREDENTIALS = credentials('dockerhub') // This assumes you've set up Jenkins credentials for your Docker registry
+            DOCKER_IMAGE_NAME = 'hemu369/spring-boot-demo/spring-image-1'
+            REMOTE_SERVER_USERNAME = 'ubuntu'
+            REMOTE_SERVER_ADDRESS = '18.217.76.208'
+        }
     
     stages {
         
@@ -19,6 +22,24 @@ pipeline {
                 }
             }
         }
+
+        stage('Docker Build and Push') {
+                    steps {
+                        // Build Docker image
+                        script {
+                            docker.build(env.DOCKER_IMAGE_NAME)
+                        }
+                        // Log in to Docker registry
+                        withCredentials([usernamePassword(credentialsId: env.DOCKER_REGISTRY_CREDENTIALS, passwordVariable: 'Ravipati@99', usernameVariable: 'hemu369')]) {
+                            script {
+                                docker.withRegistry('https://registry.hub.docker.com', env.DOCKER_USERNAME, env.DOCKER_PASSWORD) {
+                                    // Push Docker image to registry
+                                    docker.image(env.DOCKER_IMAGE_NAME).push()
+                                }
+                            }
+                        }
+                    }
+                }
         
         stage('Deploy') {
             steps {

@@ -25,6 +25,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public ArrayList<String> getCourses() {
+         System.out.println("Hello");
 //        Iterable<CoursesDTO> courses = courseRepository.findAll();
 //        ArrayList<String> coursesList = new ArrayList<>();
 //        for (CoursesDTO coursesDTO : courses) {
