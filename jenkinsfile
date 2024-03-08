@@ -56,11 +56,11 @@ pipeline {
                     steps {
                         // SSH into the target EC2 instance and pull the Docker image
                         sshagent(credentials: ['ec2-spring']) {
-                            sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker pull ${env.DOCKER_IMAGE_NAME}'"
+                            sh "sudo ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker pull ${env.DOCKER_IMAGE_NAME}'"
                         }
                         // Run Docker container on the remote server
                         sshagent(credentials: ['ec2-spring']) {
-                            sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:8080 ${env.DOCKER_IMAGE_NAME}'"
+                            sh "sudo ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:8080 ${env.DOCKER_IMAGE_NAME}'"
                         }
                     }
                 }
