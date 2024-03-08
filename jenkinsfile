@@ -30,7 +30,7 @@ pipeline {
                             docker.build(env.DOCKER_IMAGE_NAME)
                         }
                         // Log in to Docker registry
-                        withCredentials([usernamePassword(credentialsId: env.DOCKER_REGISTRY_CREDENTIALS, passwordVariable: 'Ravipati@99', usernameVariable: 'hemu369')]) {
+                        withCredentials([usernamePassword(credentialsId: env.DOCKER_REGISTRY_CREDENTIALS)]) {
                             script {
                                 docker.withRegistry('https://registry.hub.docker.com', env.DOCKER_USERNAME, env.DOCKER_PASSWORD) {
                                     // Push Docker image to registry
