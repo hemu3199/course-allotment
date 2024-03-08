@@ -60,6 +60,7 @@ pipeline {
                         }
                         // Run Docker container on the remote server
                         sshagent(credentials: ['ec2-spring']) {
+                            sh "ssh-copy-id ubuntu@18.217.76.208"
                             sh "sudo ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:8080 ${env.DOCKER_IMAGE_NAME}'"
                         }
                     }
