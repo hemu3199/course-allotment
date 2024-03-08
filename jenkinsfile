@@ -9,7 +9,7 @@ pipeline {
             DOCKER_REGISTRY_CREDENTIALS = credentials('dockerhub') // This assumes you've set up Jenkins credentials for your Docker registry
             DOCKER_IMAGE_NAME = 'hemu369/spring-boot-demo:latest'
             REMOTE_SERVER_USERNAME = 'ubuntu'
-            REMOTE_SERVER_ADDRESS = '172.31.28.64'
+            REMOTE_SERVER_ADDRESS = '18.217.76.208'
         }
     
     stages {
