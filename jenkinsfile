@@ -53,13 +53,16 @@ pipeline {
 //             }
         
         stage('Deploy') {
-            steps {
-                // Copy your built artifact to the EC2 instance
-                //sh 'scp target/your-application.jar ec2-user@your_ec2_instance_public_ip:/path/to/deployment/directory'
-                echo('deployment')
-                // Restart your application on EC2 (you may need to replace this with appropriate commands)
-                //sh 'ssh ec2-user@your_ec2_instance_public_ip "sudo systemctl restart your-application.service"'
-            }
-        }
+                    steps {
+                        // SSH into the target EC2 instance and pull the Docker image
+                        sshagent(credentials: ['ec2-spring']) {
+                            sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker pull ${env.DOCKER_IMAGE_NAME}'"
+                        }
+                        // Run Docker container on the remote server
+                        sshagent(credentials: ['ec2-spring']) {
+                            sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:8080 ${env.DOCKER_IMAGE_NAME}'"
+                        }
+                    }
+                }
     }
 }
