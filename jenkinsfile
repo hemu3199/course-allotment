@@ -72,7 +72,7 @@ pipeline {
                         script {
                             sshagent(credentials: ['ec2-spring']) {
                                 echo "------------------- pull started ---------------------"
-                                docker.withRegistry('', "dockerhub") {
+                                docker.withRegistry('https://registry.hub.docker.com', "dockerhub") {
                                     sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker pull ${env.DOCKER_IMAGE_NAME}'"
                                 }
                                 echo "------------------- pull success ---------------------"
