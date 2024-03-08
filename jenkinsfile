@@ -54,10 +54,12 @@ pipeline {
 
         stage('Docker pull') {
                     steps {
-                        docker.withRegistry('', "dockerhub") {
-                            echo '----------- pull started ------------'
-                            sh 'docker pull hemu369/spring-boot-demo:latest'
-                            echo '----------- pull success ------------'
+                        script {
+                            docker.withRegistry('', "dockerhub") {
+                                echo '----------- pull started ------------'
+                                sh 'docker pull hemu369/spring-boot-demo:latest'
+                                echo '----------- pull success ------------'
+                            }
                         }
                     }
         }
