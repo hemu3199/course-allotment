@@ -51,21 +51,31 @@ pipeline {
 //                 }
 //               }
 //             }
-        
-        stage('Deploy') {
+
+        stage('Docker pull') {
                     steps {
-                        // SSH into the target EC2 instance and pull the Docker image
-                        script {
-                            sshagent(credentials: ['ec2-spring']) {
-                                echo "------------------- pull started ---------------------"
-                                docker.withRegistry('', "dockerhub") {
-                                    sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker pull ${env.DOCKER_IMAGE_NAME}'"
-                                }
-                                echo "------------------- pull success ---------------------"
-                                sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:8080 ${env.DOCKER_IMAGE_NAME}'"
-                            }
+                        docker.withRegistry('', "dockerhub") {
+                            echo '----------- pull started ------------'
+                            sh 'docker pull hemu369/spring-boot-demo:latest'
+                            echo '----------- pull success ------------'
                         }
                     }
-                }
+        }
+        
+//         stage('Deploy') {
+//                     steps {
+//                         // SSH into the target EC2 instance and pull the Docker image
+//                         script {
+//                             sshagent(credentials: ['ec2-spring']) {
+//                                 echo "------------------- pull started ---------------------"
+//                                 docker.withRegistry('', "dockerhub") {
+//                                     sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker pull ${env.DOCKER_IMAGE_NAME}'"
+//                                 }
+//                                 echo "------------------- pull success ---------------------"
+//                                 sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:8080 ${env.DOCKER_IMAGE_NAME}'"
+//                             }
+//                         }
+//                     }
+//                 }
     }
 }
