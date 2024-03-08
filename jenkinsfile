@@ -7,7 +7,7 @@ pipeline {
 
     environment {
             DOCKER_REGISTRY_CREDENTIALS = credentials('dockerhub') // This assumes you've set up Jenkins credentials for your Docker registry
-            DOCKER_IMAGE_NAME = 'spring-boot-demo:${BUILD_NUMBER}'
+            DOCKER_IMAGE_NAME = 'spring-boot-demo:latest'
             REMOTE_SERVER_USERNAME = 'ubuntu'
             REMOTE_SERVER_ADDRESS = '18.217.76.208'
         }
