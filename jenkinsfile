@@ -9,7 +9,7 @@ pipeline {
             DOCKER_REGISTRY_CREDENTIALS = credentials('dockerhub') // This assumes you've set up Jenkins credentials for your Docker registry
             DOCKER_IMAGE_NAME = 'hemu369/spring-boot-demo:latest'
             REMOTE_SERVER_USERNAME = 'ubuntu'
-            REMOTE_SERVER_ADDRESS = '18.217.76.208'
+            REMOTE_SERVER_ADDRESS = '172.31.28.64'
         }
     
     stages {
@@ -56,11 +56,9 @@ pipeline {
                     steps {
                         // SSH into the target EC2 instance and pull the Docker image
                         sshagent(credentials: ['ec2-spring']) {
+                            echo "------------------- pull started ---------------------"
                             sh "sudo ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker pull ${env.DOCKER_IMAGE_NAME}'"
-                        }
-                        // Run Docker container on the remote server
-                        sshagent(credentials: ['ec2-spring']) {
-                            sh "ssh-copy-id ubuntu@18.217.76.208"
+                            echo "------------------- pull success ---------------------"
                             sh "sudo ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:8080 ${env.DOCKER_IMAGE_NAME}'"
                         }
                     }
