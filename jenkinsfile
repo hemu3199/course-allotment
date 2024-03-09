@@ -71,7 +71,7 @@ pipeline {
                         // SSH into the target EC2 instance and pull the Docker image
                         script {
                             echo "------------------- pull started ---------------------"
-                            echo "${dockerhub.username}"
+                            //echo "${dockerhub.username}"
                             echo "dockerhub"
                              //docker.withRegistry('https://registry.hub.docker.com', "dockerhub") {
 
