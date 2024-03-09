@@ -71,8 +71,8 @@ pipeline {
                         // SSH into the target EC2 instance and pull the Docker image
                         script {
                             echo "------------------- pull started ---------------------"
-                            //echo "${dockerhub.username}"
-                            echo "dockerhub"
+                            echo "${env.DOCKER_REGISTRY_CREDENTIALS}"
+                            //echo "dockerhub"
                              //docker.withRegistry('https://registry.hub.docker.com', "dockerhub") {
 
 //                                     sshagent(credentials: ['ec2-spring']) {
