@@ -71,7 +71,7 @@ pipeline {
                         // SSH into the target EC2 instance and pull the Docker image
                         script {
                             echo "------------------- pull started ---------------------"
-                            echo "${env.DOCKER_REGISTRY_CREDENTIALS[0]}"
+                            echo "${env.DOCKER_REGISTRY_CREDENTIALS_PSW}"
                             //echo "dockerhub"
                              //docker.withRegistry('https://registry.hub.docker.com', "dockerhub") {
 
