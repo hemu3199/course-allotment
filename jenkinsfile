@@ -74,9 +74,9 @@ pipeline {
                              //docker.withRegistry('https://registry.hub.docker.com', "dockerhub") {
 
                                     sshagent(credentials: ['ec2-spring']) {
-                                    sh "docker login -u hemu369 -p Ravipati@99"
+                                    //sh 'docker login -u hemu369 -p Ravipati@99'
 "
-                                    sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker pull ${env.DOCKER_IMAGE_NAME}'"
+                                    sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker login -u hemu369 -p Ravipati@99' 'docker pull ${env.DOCKER_IMAGE_NAME}'"
                                 }
                                 echo "------------------- pull success ---------------------"
                                 //sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:8080 ${env.DOCKER_IMAGE_NAME}'"
