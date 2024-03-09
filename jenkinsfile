@@ -25,18 +25,18 @@ pipeline {
             }
         }
 
-//         stage('Docker Build and Push') {
-//                     steps {
-//                         // Build Docker image
-//                         script {
-//                             docker.build(env.DOCKER_IMAGE_NAME)
-//                                 docker.withRegistry('', "dockerhub") {
-//                                     // Push Docker image to registry
-//                                     docker.image(env.DOCKER_IMAGE_NAME).push()
-//                                 }
-//                             }
-//                     }
-//                 }
+        stage('Docker Build and Push') {
+                    steps {
+                        // Build Docker image
+                        script {
+                            docker.build(env.DOCKER_IMAGE_NAME)
+                                docker.withRegistry('', "dockerhub") {
+                                    // Push Docker image to registry
+                                    docker.image(env.DOCKER_IMAGE_NAME).push()
+                                }
+                            }
+                    }
+                }
 //         stage('Build and Push Docker Image') {
 //               environment {
 //                 DOCKER_IMAGE = "ganjivasu/ultimate-cicd:${BUILD_NUMBER}"
@@ -71,13 +71,13 @@ pipeline {
                         // SSH into the target EC2 instance and pull the Docker image
                         script {
                             echo "------------------- pull started ---------------------"
-                            echo "${env.DOCKER_REGISTRY_CREDENTIALS_PSW}"
+                            //echo "${env.DOCKER_REGISTRY_CREDENTIALS_PSW}"
                             //echo "dockerhub"
                              //docker.withRegistry('https://registry.hub.docker.com', "dockerhub") {
 
-//                                     sshagent(credentials: ['ec2-spring']) {
-//                                     sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker login -u hemu369 -p Ravipati@99 && docker pull ${env.DOCKER_IMAGE_NAME}'"
-//                                 }
+                                    sshagent(credentials: ['ec2-spring']) {
+                                    sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker login -u ${env.DOCKER_REGISTRY_CREDENTIALS} -p ${env.DOCKER_REGISTRY_CREDENTIALS_PSW} && docker pull ${env.DOCKER_IMAGE_NAME}'"
+                                }
                                 echo "------------------- pull success ---------------------"
                                 //sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:8080 ${env.DOCKER_IMAGE_NAME}'"
                             //}
