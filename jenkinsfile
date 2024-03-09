@@ -45,7 +45,7 @@ pipeline {
                             sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker login -u ${env.DOCKER_REGISTRY_CREDENTIALS} -p ${env.DOCKER_REGISTRY_CREDENTIALS_PSW} && docker pull ${env.DOCKER_IMAGE_NAME}'"
 
                             echo "------------------- pull success ---------------------"
-                            sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker rm -f $(docker ps -aq) && docker run -d -p 8080:9000 ${env.DOCKER_IMAGE_NAME}'"
+                            sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:9000 ${env.DOCKER_IMAGE_NAME}'"
                             echo "------------------- Running --------------------------"
                             }
                         }
