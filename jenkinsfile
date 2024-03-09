@@ -78,10 +78,13 @@ pipeline {
                                     sshagent(credentials: ['ec2-spring']) {
                                     withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_REGISTRY_CREDENTIALS', passwordVariable: 'DOCKER_REGISTRY_CREDENTIALS_PSW')]) {
                                     sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker login -u ${env.DOCKER_REGISTRY_CREDENTIALS} -p ${env.DOCKER_REGISTRY_CREDENTIALS_PSW} && docker pull ${env.DOCKER_IMAGE_NAME}'"
+
+                                    echo "------------------- pull success ---------------------"
+                                    sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:8080 ${env.DOCKER_IMAGE_NAME}'"
+                                    echo "------------------- Running --------------------------"
                                     }
                                 }
-                                echo "------------------- pull success ---------------------"
-                                //sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:8080 ${env.DOCKER_IMAGE_NAME}'"
+
                             //}
                         }
 //                         script {
