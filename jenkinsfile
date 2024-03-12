@@ -57,7 +57,7 @@ pipeline {
     post {
         always {
             script {
-                withGitHubChecks {
+                withChecks {
                     publishChecks {
                         check(name: 'Jenkins Pipeline', status: currentBuild.currentResult, conclusion: 'success')
                     }
