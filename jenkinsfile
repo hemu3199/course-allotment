@@ -57,13 +57,13 @@ pipeline {
     post {
             always {
                 echo "hello"
-    // //             script {
-    // //                 withChecks {
-    // //                     publishChecks {
-    // //                         check(name: 'Jenkins Pipeline', status: currentBuild.currentResult, conclusion: 'success')
-    // //                     }
-    // //                 }
-    // //             }
+                script {
+                    withGitHubChecks {
+                        publishChecks {
+                            check(name: 'Jenkins Pipeline', status: currentBuild.currentResult, conclusion: 'success')
+                        }
+                    }
+                }
             }
         }
 }
