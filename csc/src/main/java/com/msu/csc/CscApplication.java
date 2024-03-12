@@ -10,6 +10,8 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class CscApplication {
 
+
+
 	@Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
