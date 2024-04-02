@@ -1,7 +1,11 @@
 package com.msu.csc.controllers;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import com.msu.csc.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +19,8 @@ public class CourseRegistration {
 
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private StudentService studentService;
 
 
 
@@ -22,16 +28,21 @@ public class CourseRegistration {
     @PostMapping("/register")
     public Response student_choices(@RequestBody Request request) {
         System.out.println(request.toString());
+        studentService.postRecord(request);
         return new Response();
     }
 
-    @RequestMapping("/courses")
-    public ArrayList<String> get_courses(){
-        return courseService.getCourses();
+    @RequestMapping("/courseslist")
+    public List<String> coursesList(){
+        List<Map<String, String>> courses = courseService.getCourses();
+        System.out.println(courses);
+        return courses.stream().map(course -> course.get("course_id")+" - "+course.get("course_name")).collect(Collectors.toList());
     }
 
-    @RequestMapping("/payments")
-    public ArrayList<String> get_payments(){
-        return courseService.getCourses();
+    @RequestMapping("/courses")
+    public List<Map<String, String>> courses(){
+        List<Map<String, String>> courses = courseService.getCourses();
+        System.out.println(courses);
+        return courses;
     }
 }
