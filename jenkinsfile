@@ -26,7 +26,7 @@ pipeline {
                         // Build Docker image
                         script {
                             docker.build(env.DOCKER_IMAGE_NAME)
-                                docker.withRegistry('', "dockerhub") {
+                                docker.withRegistry('', "docker") {
                                     // Push Docker image to registry
                                     docker.image(env.DOCKER_IMAGE_NAME).push()
                                 }
