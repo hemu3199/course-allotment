@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-            DOCKER_REGISTRY_CREDENTIALS = credentials('dockerhub') // This assumes you've set up Jenkins credentials for your Docker registry
-            DOCKER_IMAGE_NAME = 'hemu369/spring-boot-demo:latest'
+            DOCKER_REGISTRY_CREDENTIALS = credentials('docker') // This assumes you've set up Jenkins credentials for your Docker registry
+            DOCKER_IMAGE_NAME = 'ganjivasu/spring-boot-demo:latest'
             REMOTE_SERVER_USERNAME = 'ubuntu'
-            REMOTE_SERVER_ADDRESS = '18.118.36.174'
+            REMOTE_SERVER_ADDRESS = '54.208.227.207'
             CONTAINER_PORT = 8080
             HOST_PORT = 8080
         }
@@ -41,7 +41,7 @@ pipeline {
                             echo "------------------- pull started ---------------------"
 
                             sshagent(credentials: ['ec2-spring']) {
-                            withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_REGISTRY_CREDENTIALS', passwordVariable: 'DOCKER_REGISTRY_CREDENTIALS_PSW')]) {
+                            withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'DOCKER_REGISTRY_CREDENTIALS', passwordVariable: 'DOCKER_REGISTRY_CREDENTIALS_PSW')]) {
                             sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker login -u ${env.DOCKER_REGISTRY_CREDENTIALS} -p ${env.DOCKER_REGISTRY_CREDENTIALS_PSW} && docker pull ${env.DOCKER_IMAGE_NAME}'"
 
                             echo "------------------- pull success ---------------------"
