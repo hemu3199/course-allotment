@@ -1,8 +1,15 @@
 package com.msu.csc.domin;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "student_enrollment")
 public class Request {
 
     private String name;
+    @Id
     private String mnumber;
     private String email;
     private String credits;
@@ -11,6 +18,7 @@ public class Request {
     private String preference2;
     private String preference3;
     private String preference4;
+    private String flag; // takes exists/new 
 
     public String getName() {
         return name;
@@ -84,7 +92,15 @@ public class Request {
         this.preference4 = preference4;
     }
 
-    @Override
+    public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
+	@Override
     public String toString() {
         return "Request{" +
                 "name='" + name + '\'' +

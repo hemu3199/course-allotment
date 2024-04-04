@@ -1,15 +1,15 @@
 package com.msu.csc.controllers;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.msu.csc.service.StudentService;
+import com.msu.csc.serviceimpljpa.StudentServiceImplJpa;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.msu.csc.domin.Courses;
 import com.msu.csc.domin.Request;
 import com.msu.csc.domin.Response;
 import com.msu.csc.service.CourseService;
@@ -19,17 +19,24 @@ public class CourseRegistration {
 
     @Autowired
     private CourseService courseService;
+    
+//    @Autowired
+//    private StudentService studentService;
+//    
     @Autowired
-    private StudentService studentService;
-
+    private StudentServiceImplJpa studentService;
 
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/register")
     public Response student_choices(@RequestBody Request request) {
         System.out.println(request.toString());
-        studentService.postRecord(request);
-        return new Response();
+        //studentService.postRecord(request); //This code is for Excel
+        //Below is updated code using Jpa Repo
+        String responseMsg = studentService.registerCourse(request);
+        Response response = new Response();
+        response.setStatus_message(responseMsg);
+        return response;
     }
 
     @RequestMapping("/courseslist")
@@ -45,4 +52,6 @@ public class CourseRegistration {
         System.out.println(courses);
         return courses;
     }
+    
+    
 }

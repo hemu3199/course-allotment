@@ -1,12 +1,21 @@
 package com.msu.csc.domin;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "csc_courses")
 public class Courses {
+	@Id
     private String course_number;
     private String course_section;
     private String course_name;
     private String professor_name;
     private String seats_available;
     private String semester;
+    @Column(name = "to_be_taken_year")
     private String year;
     public String getCourse_number() {
         return course_number;
