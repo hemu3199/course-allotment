@@ -15,7 +15,8 @@ public class SearchAndRemoveRepository {
 
         try (FileInputStream inputStream = new FileInputStream(filePath)) {
             Workbook workbook = WorkbookFactory.create(inputStream);
-            Sheet sheet = workbook.getSheetAt(0); // Assuming you want to search in the first sheet
+            Sheet sheet = workbook.getSheet("student"); // Assuming you want to search in the first sheet
+            //Changed the above to student sheet 
 
             int columnIndex = -1; // Initialize column index
             Row headerRow = sheet.getRow(0); // Assuming the header row is the first row

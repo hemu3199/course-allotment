@@ -15,7 +15,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Map<String, String>> getCourses() {
-         return courseRepository.readExcelData("C:/Users/ravip/Downloads/COURSES.xlsx");
+         return courseRepository.readExcelData("C:\\Users\\Nitin's Inspiron5410\\Documents\\workspace-spring-tool-suite-4-4.20.0.RELEASE\\IllinoisCourses\\COURSES.xlsx");
     }
     
 }
