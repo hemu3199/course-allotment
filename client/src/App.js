@@ -7,6 +7,7 @@ import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import Availablity from "./pages/Availablity";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
               <div className="grid_inner">
                 <Routes>
                   <Route path="" element={<Home />} />
-                  <Route path="scholarships" element={""} />
+                  <Route path="coursesAvailabe" element={<Availablity />} />
                   <Route path="scholarships/create" element={""} />
                   <Route path="scholarships/:id" element={""} />
                 </Routes>
