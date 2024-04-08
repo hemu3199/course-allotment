@@ -45,16 +45,17 @@ pipeline {
                             withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'DOCKER_REGISTRY_CREDENTIALS', passwordVariable: 'DOCKER_REGISTRY_CREDENTIALS_PSW')]) {
                             echo "------------------- docker creds accepted ---------------------"
                             sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker login -u ${env.DOCKER_REGISTRY_CREDENTIALS} -p ${env.DOCKER_REGISTRY_CREDENTIALS_PSW} && docker pull ${env.DOCKER_IMAGE_NAME}'"
-                             }
+                            echo "------------------- pull success ---------------------"
+                            sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:9000 ${env.DOCKER_IMAGE_NAME}'"
+                            echo "------------------- Running --------------------------"
+                            }
                          }
 
                            // sshagent(credentials: ['ec2-spring']) {
                            // withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'DOCKER_REGISTRY_CREDENTIALS', passwordVariable: 'DOCKER_REGISTRY_CREDENTIALS_PSW')]) {
                            // sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker login -u ${env.DOCKER_REGISTRY_CREDENTIALS} -p ${env.DOCKER_REGISTRY_CREDENTIALS_PSW} && docker pull ${env.DOCKER_IMAGE_NAME}'"
 
-                            echo "------------------- pull success ---------------------"
-                            sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 8080:9000 ${env.DOCKER_IMAGE_NAME}'"
-                            echo "------------------- Running --------------------------"
+                            
                           //  }
                        //  }
 
