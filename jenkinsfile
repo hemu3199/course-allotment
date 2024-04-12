@@ -5,7 +5,7 @@ pipeline {
             DOCKER_REGISTRY_CREDENTIALS = credentials('docker') // This assumes you've set up Jenkins credentials for your Docker registry
             DOCKER_IMAGE_NAME = 'ganjivasu/spring-boot-demo:latest'
             REMOTE_SERVER_USERNAME = 'ubuntu'
-            REMOTE_SERVER_ADDRESS = '3.212.78.188'
+            REMOTE_SERVER_ADDRESS = '34.199.5.152'
             CONTAINER_PORT = 9000
             HOST_PORT = 9000
         }
