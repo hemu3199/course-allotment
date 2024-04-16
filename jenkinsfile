@@ -6,8 +6,8 @@ pipeline {
             DOCKER_IMAGE_NAME = 'ganjivasu/spring-boot-demo:latest'
             REMOTE_SERVER_USERNAME = 'ubuntu'
             REMOTE_SERVER_ADDRESS = '3.212.78.188'
-            CONTAINER_PORT = 80
-            HOST_PORT = 80
+            CONTAINER_PORT = 9000
+            HOST_PORT = 9000
         }
     
     stages {
@@ -46,7 +46,7 @@ pipeline {
                             echo "------------------- docker creds accepted ---------------------"
                             sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker login -u ${env.DOCKER_REGISTRY_CREDENTIALS} -p ${env.DOCKER_REGISTRY_CREDENTIALS_PSW} && docker pull ${env.DOCKER_IMAGE_NAME}'"
                             echo "------------------- pull success ---------------------"
-                            sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 80:80 ${env.DOCKER_IMAGE_NAME}'"
+                            sh "ssh -o StrictHostKeyChecking=no ${env.REMOTE_SERVER_USERNAME}@${env.REMOTE_SERVER_ADDRESS} 'docker run -d -p 9000:9000 ${env.DOCKER_IMAGE_NAME}'"
                             echo "------------------- Running --------------------------"
                             }
                          }
